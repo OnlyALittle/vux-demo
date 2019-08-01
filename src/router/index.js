@@ -1,31 +1,25 @@
-import Vue from 'vue'
-import Router from 'vue-router'
- 
-Vue.use(Router)
+import Vue from "vue";
+import VueRouter from "vue-router";
 
+import List from '../views/List'
+import Details from '../views/Details'
 
-export default new Router({
-    mode: 'history',
-    base: __dirname,
-    routes: [
-        {
-            path: '/',
-            name: 'index',
-            component: resolve => require(['../views/ArticleList'], resolve)
-        },
-        {
-            path: '/detail',
-            name: 'detail',
-            component: resolve => require(['../views/ArticleDetail'], resolve)  ,
-            meta: {
-                scrollToTop: true
-            }
-        },
-        {
-            path: '*',
-            name: 'page404',
-            component: resolve => require(['../views/page404.vue'], resolve)
-        }
+// 要告诉 vue 使用 vueRouter
+Vue.use(VueRouter);
 
-    ]
+const routes = [
+    {
+        path:"/",
+        component:List
+    },
+    {
+        name:'details',
+        path: "/details/:infoIsid",
+        component: Details
+    }
+]
+
+var router =  new VueRouter({
+    routes
 })
+export default router;
